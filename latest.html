@@ -21,7 +21,9 @@
             }
             body { background: #000; }
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #F5F5F7; color: var(--text-primary); line-height: 1.5; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #F5F5F7; color: #000000; line-height: 1.5; }
+        h1, h2, h3, h4, h5, h6, p, span, div, td, th { color: #000000; }
+        @media (prefers-color-scheme: dark) { body, h1, h2, h3, h4, h5, h6, p, span, div, td, th { color: #FFFFFF; } }
         .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
         .header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border-color); }
         .header h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 700; background: linear-gradient(135deg, var(--apple-blue), var(--apple-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -68,10 +70,10 @@
         .alert-card { background: linear-gradient(135deg, #FFF3E0, #FFF8E1); border-radius: 16px; padding: 20px; border-left: 4px solid var(--apple-orange); display: flex; gap: 14px; }
         .alert-card.info { background: linear-gradient(135deg, #E3F2FD, #E8EAF6); border-left-color: var(--apple-blue); }
         .alert-icon { font-size: 24px; }
-        .alert-content h4 { font-size: 15px; font-weight: 600; }
+        .alert-content h4 { font-size: 15px; font-weight: 600; color: #000000 !important; }
         .expandable-section { background: var(--bg-primary); border-radius: 20px; box-shadow: var(--card-shadow); overflow: hidden; }
         .expandable-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; }
-        .expandable-header h3 { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .expandable-header h3 { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 10px; color: #000000 !important; }
         .expandable-header .count { background: var(--apple-red); color: white; font-size: 12px; padding: 4px 10px; border-radius: 20px; }
         .expand-icon { width: 24px; height: 24px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; }
         .expand-icon svg { width: 14px; height: 14px; fill: var(--text-secondary); transition: transform 0.3s; }
@@ -84,8 +86,8 @@
         .stale-pr:hover { text-decoration: underline; }
         .stale-title a { color: var(--apple-blue); text-decoration: none; }
         .stale-title a:hover { text-decoration: underline; }
-        .stale-author { color: var(--text-primary); font-weight: 500; }
-        .stale-title { color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .stale-author { color: #000000 !important; font-weight: 500; }
+        .stale-title { color: #333333 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .stale-days { text-align: right; }
         .footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); color: var(--text-tertiary); font-size: 13px; }
         @media (max-width: 768px) {
@@ -107,7 +109,7 @@
         <section class="section">
             <h2 class="section-title"><span class="icon icon-blue" style="color: white;">📊</span> Repository Overview</h2>
             <div class="stats-grid">
-                <div class="stat-card"><div class="stat-value blue">91</div><div class="stat-label">Total Open PRs</div><div class="stat-detail">21 drafts</div></div>
+                <div class="stat-card"><div class="stat-value blue">92</div><div class="stat-label">Total Open PRs</div><div class="stat-detail">21 drafts</div></div>
                 <div class="stat-card"><div class="stat-value green">7</div><div class="stat-label">Approved</div></div>
                 <div class="stat-card"><div class="stat-value purple">48</div><div class="stat-label">Avg. Age (Days)</div></div>
                 <div class="stat-card"><div class="stat-value orange">39</div><div class="stat-label">Stale PRs</div><div class="stat-detail">>14 days idle</div></div>
@@ -144,8 +146,8 @@
 <tr><td><span class="developer-name">anastasiia-uides</span></td><td><span class="badge badge-blue">3</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">0 days</span></td></tr>
 <tr><td><span class="developer-name">anton-boom</span></td><td><span class="badge badge-blue">3</span></td><td>0</td><td>0</td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-green">0 days</span></td></tr>
 <tr><td><span class="developer-name">alongoldboim</span></td><td><span class="badge badge-blue">2</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">1 days</span></td></tr>
+<tr><td><span class="developer-name">sagiboom</span></td><td><span class="badge badge-blue">2</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">6 days</span></td></tr>
 <tr><td><span class="developer-name">SeyranPH</span></td><td><span class="badge badge-blue">1</span></td><td>0</td><td><span class="badge badge-orange">1</span></td><td>0</td><td><span class="badge badge-orange">33 days</span></td></tr>
-<tr><td><span class="developer-name">sagiboom</span></td><td><span class="badge badge-blue">1</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">6 days</span></td></tr>
                     </tbody>
                 </table>
             </div>
