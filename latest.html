@@ -28,7 +28,8 @@
         .header .subtitle { font-size: 22px; color: var(--text-secondary); }
         .header .date { font-size: 14px; color: var(--text-tertiary); margin-top: 8px; }
         .section { margin-bottom: 48px; }
-        .section-title { font-size: 28px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; color: var(--text-primary); }
+        .section-title { font-size: 28px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; color: #1D1D1F; }
+        @media (prefers-color-scheme: dark) { .section-title { color: #F5F5F7; } }
         .icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
         .icon-blue { background: linear-gradient(135deg, #007AFF, #5856D6); }
         .icon-green { background: linear-gradient(135deg, #34C759, #30D158); }
@@ -112,7 +113,11 @@
         <section class="section">
             <h2 class="section-title"><span class="icon icon-green" style="color: white;">✓</span> Ready to Merge</h2>
             <div class="merge-cards">
-{READY_TO_MERGE}
+<div class="merge-card"><span class="pr-number">#12414</span><span class="merge-badge">Ready</span><h3>Closes #11813 Operations: Task Catalog - Missing Configurati</h3><p class="author">by @serhii-boomnow</p></div>
+<div class="merge-card"><span class="pr-number">#12328</span><span class="merge-badge">Ready</span><h3>Sync listing_taxes amounts on tax update</h3><p class="author">by @anton-boom</p></div>
+<div class="merge-card"><span class="pr-number">#12319</span><span class="merge-badge">Ready</span><h3>overlay</h3><p class="author">by @chaimsalzer</p></div>
+<div class="merge-card"><span class="pr-number">#7561</span><span class="merge-badge">Ready</span><h3>fix eb extension</h3><p class="author">by @yuvalic</p></div>
+<div class="merge-card"><span class="pr-number">#7089</span><span class="merge-badge">Ready</span><h3>1844305 ai added services - facts into property_info payload</h3><p class="author">by @Devesy</p></div>
             </div>
         </section>
 
@@ -122,7 +127,19 @@
                 <table>
                     <thead><tr><th>Developer</th><th>Open PRs</th><th>Drafts</th><th>Old (>2wk)</th><th>Approved</th><th>Longest Idle</th></tr></thead>
                     <tbody>
-{DEVELOPER_ROWS}
+<tr><td><span class="developer-name">serhii-boomnow</span></td><td><span class="badge badge-blue">17</span></td><td><span class="badge badge-purple">4</span></td><td><span class="badge badge-orange">9</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">228 days</span></td></tr>
+<tr><td><span class="developer-name">petro-bn</span></td><td><span class="badge badge-blue">13</span></td><td><span class="badge badge-purple">13</span></td><td>0</td><td>0</td><td><span class="badge badge-green">13 days</span></td></tr>
+<tr><td><span class="developer-name">Devesy</span></td><td><span class="badge badge-blue">12</span></td><td>0</td><td><span class="badge badge-orange">10</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">242 days</span></td></tr>
+<tr><td><span class="developer-name">yuvalic</span></td><td><span class="badge badge-blue">10</span></td><td>0</td><td><span class="badge badge-orange">6</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">183 days</span></td></tr>
+<tr><td><span class="developer-name">denis-polulyakh</span></td><td><span class="badge badge-blue">8</span></td><td><span class="badge badge-purple">1</span></td><td><span class="badge badge-orange">2</span></td><td>0</td><td><span class="badge badge-orange">26 days</span></td></tr>
+<tr><td><span class="developer-name">stasBoom</span></td><td><span class="badge badge-blue">8</span></td><td>0</td><td><span class="badge badge-orange">7</span></td><td><span class="badge badge-green">2</span></td><td><span class="badge badge-red">259 days</span></td></tr>
+<tr><td><span class="developer-name">mgoldboi</span></td><td><span class="badge badge-blue">7</span></td><td><span class="badge badge-purple">2</span></td><td><span class="badge badge-orange">5</span></td><td>0</td><td><span class="badge badge-red">94 days</span></td></tr>
+<tr><td><span class="developer-name">chaimsalzer</span></td><td><span class="badge badge-blue">6</span></td><td><span class="badge badge-purple">1</span></td><td><span class="badge badge-orange">2</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">124 days</span></td></tr>
+<tr><td><span class="developer-name">anastasiia-uides</span></td><td><span class="badge badge-blue">3</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">0 days</span></td></tr>
+<tr><td><span class="developer-name">anton-boom</span></td><td><span class="badge badge-blue">3</span></td><td>0</td><td>0</td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-green">0 days</span></td></tr>
+<tr><td><span class="developer-name">alongoldboim</span></td><td><span class="badge badge-blue">2</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">1 days</span></td></tr>
+<tr><td><span class="developer-name">SeyranPH</span></td><td><span class="badge badge-blue">1</span></td><td>0</td><td><span class="badge badge-orange">1</span></td><td>0</td><td><span class="badge badge-orange">33 days</span></td></tr>
+<tr><td><span class="developer-name">sagiboom</span></td><td><span class="badge badge-blue">1</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">6 days</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -131,7 +148,10 @@
         <section class="section">
             <h2 class="section-title"><span class="icon icon-orange" style="color: white;">🔔</span> Reviewer Workload</h2>
             <div class="alert-cards">
-{REVIEWER_ALERTS}
+<div class="alert-card"><span class="alert-icon">⚠️</span><div class="alert-content"><h4>@alongoldboim has 6 pending reviews</h4></div></div>
+<div class="alert-card"><span class="alert-icon">⚠️</span><div class="alert-content"><h4>@yuvalic has 6 pending reviews</h4></div></div>
+<div class="alert-card info"><span class="alert-icon">📝</span><div class="alert-content"><h4>@chaimsalzer has 4 pending reviews</h4></div></div>
+<div class="alert-card info"><span class="alert-icon">📝</span><div class="alert-content"><h4>@stasBoom has 2 pending reviews</h4></div></div>
             </div>
         </section>
 
@@ -144,7 +164,45 @@
                 </div>
                 <div class="expandable-content">
                     <div class="stale-list">
-{STALE_ITEMS}
+<div class="stale-item"><span class="stale-pr">#6926</span><span class="stale-author">stasBoom</span><span class="stale-title">1787816 add currency to cm</span><span class="stale-days"><span class="badge badge-red">259 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#7089</span><span class="stale-author">Devesy</span><span class="stale-title">1844305 ai added services - facts into property_info pa</span><span class="stale-days"><span class="badge badge-red">242 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#7241</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">[Invoice] purchase item mark as paid in invoice handle </span><span class="stale-days"><span class="badge badge-red">228 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#7413</span><span class="stale-author">stasBoom</span><span class="stale-title">Refactor CalculateStatsJob</span><span class="stale-days"><span class="badge badge-red">217 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#8203</span><span class="stale-author">Devesy</span><span class="stale-title">7950 added possibility to update address items by updat</span><span class="stale-days"><span class="badge badge-red">185 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#7561</span><span class="stale-author">yuvalic</span><span class="stale-title">fix eb extension</span><span class="stale-days"><span class="badge badge-red">183 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#8214</span><span class="stale-author">Devesy</span><span class="stale-title">8212 allow keep automation for manually changed listing</span><span class="stale-days"><span class="badge badge-red">171 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9153</span><span class="stale-author">stasBoom</span><span class="stale-title">[Stripe] keep webhooks enabled</span><span class="stale-days"><span class="badge badge-red">146 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9404</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">Closes #7632 Hande duplicated channel list configuratio</span><span class="stale-days"><span class="badge badge-red">132 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#8908</span><span class="stale-author">chaimsalzer</span><span class="stale-title">working</span><span class="stale-days"><span class="badge badge-red">124 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9560</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">Minut intgration base</span><span class="stale-days"><span class="badge badge-red">124 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9650</span><span class="stale-author">Devesy</span><span class="stale-title">8913 allow edit approved message from ai and translate </span><span class="stale-days"><span class="badge badge-red">119 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9654</span><span class="stale-author">Devesy</span><span class="stale-title">9358 added filter by checkin in crm</span><span class="stale-days"><span class="badge badge-red">118 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9701</span><span class="stale-author">Devesy</span><span class="stale-title">9553 fixed hotel availability calculation</span><span class="stale-days"><span class="badge badge-red">116 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9732</span><span class="stale-author">Devesy</span><span class="stale-title">9500 fixed rate plan saving, display rate plan and canc</span><span class="stale-days"><span class="badge badge-red">111 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10038</span><span class="stale-author">mgoldboi</span><span class="stale-title">feat: Comprehensive Shifts Administration and Self-Serv</span><span class="stale-days"><span class="badge badge-red">94 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10098</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">Closes #9856 Add Linen Change Automation Feasibility</span><span class="stale-days"><span class="badge badge-red">89 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10077</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">PortalPaymentsDemo feature</span><span class="stale-days"><span class="badge badge-red">88 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10159</span><span class="stale-author">stasBoom</span><span class="stale-title">Refactor bank feed</span><span class="stale-days"><span class="badge badge-red">84 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10294</span><span class="stale-author">mgoldboi</span><span class="stale-title">Fix: Prevent infinite loop in listings-picker API calls</span><span class="stale-days"><span class="badge badge-orange">76 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10343</span><span class="stale-author">yuvalic</span><span class="stale-title">fix crm db load</span><span class="stale-days"><span class="badge badge-orange">71 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10297</span><span class="stale-author">Devesy</span><span class="stale-title">8339 added vip guests config; rule for auto messages</span><span class="stale-days"><span class="badge badge-orange">62 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9257</span><span class="stale-author">stasBoom</span><span class="stale-title">[Pricing] Add listing markups</span><span class="stale-days"><span class="badge badge-orange">60 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10651</span><span class="stale-author">yuvalic</span><span class="stale-title">future income report</span><span class="stale-days"><span class="badge badge-orange">59 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10556</span><span class="stale-author">stasBoom</span><span class="stale-title">Add tax snapshot on creation</span><span class="stale-days"><span class="badge badge-orange">50 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10489</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">Closes #9902 Fix listing page load issue</span><span class="stale-days"><span class="badge badge-orange">38 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10653</span><span class="stale-author">yuvalic</span><span class="stale-title">Upgrade node version</span><span class="stale-days"><span class="badge badge-orange">36 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#9574</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">Add multitasking tracker</span><span class="stale-days"><span class="badge badge-orange">35 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11229</span><span class="stale-author">SeyranPH</span><span class="stale-title">feat: add rake file to seed/cleanup data for BAM tools </span><span class="stale-days"><span class="badge badge-orange">33 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11249</span><span class="stale-author">Devesy</span><span class="stale-title">bam added more timezones for playbooks</span><span class="stale-days"><span class="badge badge-orange">32 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10445</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">Add fixed labor price config from catalog</span><span class="stale-days"><span class="badge badge-gray">29 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11330</span><span class="stale-author">mgoldboi</span><span class="stale-title">feat: Add superadmin learning memory management UI</span><span class="stale-days"><span class="badge badge-gray">29 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#10504</span><span class="stale-author">chaimsalzer</span><span class="stale-title">boom share</span><span class="stale-days"><span class="badge badge-gray">28 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#8736</span><span class="stale-author">serhii-boomnow</span><span class="stale-title">Closes #7746 Storage notifications</span><span class="stale-days"><span class="badge badge-gray">27 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11432</span><span class="stale-author">denis-polulyakh</span><span class="stale-title">11265: optimize calendar update</span><span class="stale-days"><span class="badge badge-gray">26 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11461</span><span class="stale-author">denis-polulyakh</span><span class="stale-title">11440: material payments for contractors</span><span class="stale-days"><span class="badge badge-gray">21 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11621</span><span class="stale-author">yuvalic</span><span class="stale-title">Remove tax profile</span><span class="stale-days"><span class="badge badge-gray">17 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11638</span><span class="stale-author">stasBoom</span><span class="stale-title">[CORE: PMS] Calculate FSP in service, update LOS</span><span class="stale-days"><span class="badge badge-gray">17 days</span></span></div>
+<div class="stale-item"><span class="stale-pr">#11642</span><span class="stale-author">yuvalic</span><span class="stale-title">improve oauth ux</span><span class="stale-days"><span class="badge badge-gray">17 days</span></span></div>
                     </div>
                 </div>
             </div>
