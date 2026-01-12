@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR Health Reports - designedvr</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 32px;
+        }
+        .latest-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            color: white;
+            padding: 16px 48px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 24px;
+        }
+        .latest-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,122,255,0.3);
+        }
+        .reports-list {
+            text-align: left;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid #eee;
+        }
+        .reports-list h3 {
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .report-link {
+            display: block;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+        .report-link:hover {
+            background: #e9ecef;
+        }
+        .report-date {
+            font-weight: 600;
+        }
+        .footer {
+            margin-top: 32px;
+            font-size: 13px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PR Health Reports</h1>
+        <p class="subtitle">designedvr/designedvr</p>
+
+        <a href="latest.html" class="latest-btn">View Latest Report</a>
+
+        <div class="reports-list" id="reportsList">
+            <h3>Previous Reports</h3>
+            <div id="reportsContainer">
+                <p style="color: #999; text-align: center;">Loading reports...</p>
+            </div>
+        </div>
+
+        <p class="footer">Auto-generated daily at 8:00 AM IST</p>
+    </div>
+
+    <script>
+        // This will be populated by the reports
+        const reports = [
+            // FORMAT: {date: "2026-01-12", file: "PR-Health-Report-2026-01-12.html"}
+        ];
+
+        const container = document.getElementById('reportsContainer');
+        if (reports.length === 0) {
+            container.innerHTML = '<p style="color: #999; text-align: center;">No previous reports yet.</p>';
+        } else {
+            container.innerHTML = reports.map(r =>
+                `<a href="${r.file}" class="report-link"><span class="report-date">${r.date}</span></a>`
+            ).join('');
+        }
+    </script>
+</body>
+</html>
