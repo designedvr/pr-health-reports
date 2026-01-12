@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR Health Report - designedvr</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --apple-blue: #007AFF; --apple-green: #34C759; --apple-orange: #FF9500;
+            --apple-red: #FF3B30; --apple-purple: #AF52DE; --apple-gray: #8E8E93;
+            --text-primary: #1D1D1F; --text-secondary: #6E6E73; --text-tertiary: #8E8E93;
+            --bg-primary: #FFFFFF; --bg-secondary: #F2F2F7; --border-color: #E5E5EA;
+            --card-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #F5F5F7; --text-secondary: #AEAEB2; --text-tertiary: #8E8E93;
+                --bg-primary: #1C1C1E; --bg-secondary: #2C2C2E; --border-color: #3A3A3C;
+                --card-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            }
+            body { background: #000; }
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(180deg, #FAFAFA 0%, #FFF 100%); color: var(--text-primary); line-height: 1.5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+        .header { text-align: center; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border-color); }
+        .header h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 700; background: linear-gradient(135deg, var(--apple-blue), var(--apple-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header .subtitle { font-size: 22px; color: var(--text-secondary); }
+        .header .date { font-size: 14px; color: var(--text-tertiary); margin-top: 8px; }
+        .section { margin-bottom: 48px; }
+        .section-title { font-size: 28px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .icon-blue { background: linear-gradient(135deg, #007AFF, #5856D6); }
+        .icon-green { background: linear-gradient(135deg, #34C759, #30D158); }
+        .icon-orange { background: linear-gradient(135deg, #FF9500, #FF6B00); }
+        .icon-red { background: linear-gradient(135deg, #FF3B30, #FF453A); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+        .stat-card { background: var(--bg-primary); border-radius: 20px; padding: 24px; box-shadow: var(--card-shadow); }
+        .stat-value { font-size: 44px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+        .stat-value.blue { color: var(--apple-blue); } .stat-value.green { color: var(--apple-green); }
+        .stat-value.orange { color: var(--apple-orange); } .stat-value.red { color: var(--apple-red); }
+        .stat-value.purple { color: var(--apple-purple); }
+        .stat-label { font-size: 13px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; }
+        .stat-detail { font-size: 12px; color: var(--text-tertiary); margin-top: 4px; }
+        .merge-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+        .merge-card { background: linear-gradient(135deg, #E8F5E9, #F1F8E9); border-radius: 20px; padding: 24px; border: 1px solid rgba(52, 199, 89, 0.2); }
+        .merge-card h3 { font-size: 16px; font-weight: 600; margin: 10px 0 6px; }
+        .merge-card .author { font-size: 14px; color: var(--text-secondary); }
+        .merge-card .pr-number { font-size: 13px; color: var(--apple-green); font-weight: 600; }
+        .merge-badge { background: var(--apple-green); color: white; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; margin-left: 10px; }
+        .table-container { overflow-x: auto; border-radius: 16px; box-shadow: var(--card-shadow); }
+        table { width: 100%; border-collapse: collapse; background: var(--bg-primary); min-width: 600px; }
+        th { background: var(--bg-secondary); padding: 14px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; }
+        td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 14px; color: var(--text-primary); }
+        .developer-name { font-weight: 600; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-blue { background: rgba(0, 122, 255, 0.15); color: var(--apple-blue); }
+        .badge-green { background: rgba(52, 199, 89, 0.15); color: var(--apple-green); }
+        .badge-orange { background: rgba(255, 149, 0, 0.15); color: var(--apple-orange); }
+        .badge-red { background: rgba(255, 59, 48, 0.15); color: var(--apple-red); }
+        .badge-gray { background: var(--bg-secondary); color: var(--text-secondary); }
+        .badge-purple { background: rgba(175, 82, 222, 0.15); color: var(--apple-purple); }
+        .alert-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .alert-card { background: linear-gradient(135deg, #FFF3E0, #FFF8E1); border-radius: 16px; padding: 20px; border-left: 4px solid var(--apple-orange); display: flex; gap: 14px; }
+        .alert-card.info { background: linear-gradient(135deg, #E3F2FD, #E8EAF6); border-left-color: var(--apple-blue); }
+        .alert-icon { font-size: 24px; }
+        .alert-content h4 { font-size: 15px; font-weight: 600; }
+        .expandable-section { background: var(--bg-primary); border-radius: 20px; box-shadow: var(--card-shadow); overflow: hidden; }
+        .expandable-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; cursor: pointer; }
+        .expandable-header h3 { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+        .expandable-header .count { background: var(--apple-red); color: white; font-size: 12px; padding: 4px 10px; border-radius: 20px; }
+        .expand-icon { width: 24px; height: 24px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; }
+        .expand-icon svg { width: 14px; height: 14px; fill: var(--text-secondary); transition: transform 0.3s; }
+        .expandable-content { max-height: 0; overflow: hidden; transition: max-height 0.4s; }
+        .expandable-content.expanded { max-height: 3000px; }
+        .expand-icon.rotated svg { transform: rotate(180deg); }
+        .stale-list { padding: 0 24px 24px; }
+        .stale-item { display: grid; grid-template-columns: 80px 140px 1fr 100px; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border-color); align-items: center; }
+        .stale-pr { font-weight: 600; color: var(--text-secondary); }
+        .stale-author { color: var(--text-primary); font-weight: 500; }
+        .stale-title { color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .stale-days { text-align: right; }
+        .footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); color: var(--text-tertiary); font-size: 13px; }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .merge-cards, .alert-cards { grid-template-columns: 1fr; }
+            .stale-item { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .stale-title { grid-column: 1 / -1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>PR Health Report</h1>
+            <p class="subtitle">designedvr/designedvr</p>
+            <p class="date">Generated on 2026-01-12</p>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title"><span class="icon icon-blue" style="color: white;">📊</span> Repository Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-value blue">91</div><div class="stat-label">Total Open PRs</div><div class="stat-detail">21 drafts</div></div>
+                <div class="stat-card"><div class="stat-value green">7</div><div class="stat-label">Approved</div></div>
+                <div class="stat-card"><div class="stat-value purple">48</div><div class="stat-label">Avg. Age (Days)</div></div>
+                <div class="stat-card"><div class="stat-value orange">39</div><div class="stat-label">Stale PRs</div><div class="stat-detail">>14 days idle</div></div>
+                <div class="stat-card"><div class="stat-value">5</div><div class="stat-label">Ready to Merge</div></div>
+                <div class="stat-card"><div class="stat-value red">13</div><div class="stat-label">Contributors</div></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="icon icon-green" style="color: white;">✓</span> Ready to Merge</h2>
+            <div class="merge-cards">
+{READY_TO_MERGE}
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="icon icon-blue" style="color: white;">👥</span> Developer Breakdown</h2>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Developer</th><th>Open PRs</th><th>Drafts</th><th>Old (>2wk)</th><th>Approved</th><th>Longest Idle</th></tr></thead>
+                    <tbody>
+{DEVELOPER_ROWS}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="icon icon-orange" style="color: white;">🔔</span> Reviewer Workload</h2>
+            <div class="alert-cards">
+{REVIEWER_ALERTS}
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title"><span class="icon icon-red" style="color: white;">⏰</span> Stale PRs <span style="font-size: 14px; color: var(--text-tertiary); font-weight: 400;">(>14 days idle)</span></h2>
+            <div class="expandable-section">
+                <div class="expandable-header" onclick="toggleExpand(this)">
+                    <h3>View All Stale PRs <span class="count">39 total</span></h3>
+                    <div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
+                </div>
+                <div class="expandable-content">
+                    <div class="stale-list">
+{STALE_ITEMS}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Auto-generated daily at 8:00 AM IST</p>
+        </footer>
+    </div>
+    <script>
+        function toggleExpand(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            content.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+    </script>
+</body>
+</html>
