@@ -1,0 +1,80 @@
+name: Refresh PR Health Report
+
+on:
+  repository_dispatch:
+    types: [refresh-report]
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Report
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          set -e
+          DATE=$(date +"%Y-%m-%d")
+          DATETIME=$(date +"%Y-%m-%d at %H:%M UTC")
+          REPORT_NAME="PR-Health-Report-${DATE}.html"
+          REPO="designedvr/designedvr"
+
+          echo "Fetching PR data from $REPO..."
+
+          TOTAL_PRS=$(gh pr list --repo $REPO --state open --json number --limit 500 | jq 'length')
+          DRAFT_COUNT=$(gh pr list --repo $REPO --state open --json isDraft --limit 500 | jq '[.[] | select(.isDraft == true)] | length')
+          APPROVED_COUNT=$(gh pr list --repo $REPO --state open --json reviewDecision --limit 500 | jq '[.[] | select(.reviewDecision == "APPROVED")] | length')
+          AVG_AGE=$(gh pr list --repo $REPO --state open --json createdAt --limit 500 | jq 'def days_since(date): ((now - (date | fromdateiso8601)) / 86400 | floor); if length > 0 then (map(days_since(.createdAt)) | add / length | floor) else 0 end')
+          STALE_COUNT=$(gh pr list --repo $REPO --state open --json updatedAt --limit 500 | jq 'def days_since(date): ((now - (date | fromdateiso8601)) / 86400 | floor); [.[] | select(days_since(.updatedAt) > 14)] | length')
+          READY_COUNT=$(gh pr list --repo $REPO --state open --json reviewDecision,isDraft,mergeable --limit 500 | jq '[.[] | select(.isDraft == false and .reviewDecision == "APPROVED" and .mergeable == "MERGEABLE")] | length')
+          CONTRIBUTOR_COUNT=$(gh pr list --repo $REPO --state open --json author --limit 500 | jq '[.[].author.login] | unique | length')
+
+          echo "Stats: PRs=$TOTAL_PRS, Drafts=$DRAFT_COUNT, Approved=$APPROVED_COUNT, Stale=$STALE_COUNT, Ready=$READY_COUNT"
+
+          READY_TO_MERGE=$(gh pr list --repo $REPO --state open --json number,title,url,author,reviewDecision,isDraft,mergeable --limit 500 | jq -r '
+            [.[] | select(.isDraft == false and .reviewDecision == "APPROVED" and .mergeable == "MERGEABLE")] | .[] |
+            "<div class=\"merge-card\"><a href=\"\(.url)\" target=\"_blank\" class=\"pr-number\">#\(.number)</a><span class=\"merge-badge\">Ready</span><h3>\(.title | .[0:60])</h3><p class=\"author\">by @\(.author.login)</p></div>"')
+
+          DEVELOPER_ROWS=$(gh pr list --repo $REPO --state open --json number,author,createdAt,updatedAt,isDraft,reviewDecision --limit 500 | jq -r '
+            def days_since(date): ((now - (date | fromdateiso8601)) / 86400 | floor);
+            def is_old: days_since(.createdAt) > 14;
+            def badge(class; val): "<span class=\"badge badge-\(class)\">\(val)</span>";
+            group_by(.author.login) |
+            map({author: .[0].author.login, total: length, drafts: ([.[] | select(.isDraft == true)] | length), old: ([.[] | select(is_old)] | length), approved: ([.[] | select(.reviewDecision == "APPROVED")] | length), oldest: (sort_by(.updatedAt) | .[0] | days_since(.updatedAt))}) |
+            sort_by(-.total) | .[] |
+            "<tr><td><span class=\"developer-name\">\(.author)</span></td><td>\(badge("blue"; .total))</td><td>\(if .drafts > 0 then badge("purple"; .drafts) else .drafts end)</td><td>\(if .old > 0 then badge("orange"; .old) else .old end)</td><td>\(if .approved > 0 then badge("green"; .approved) else .approved end)</td><td>\(if .oldest > 80 then badge("red"; "\(.oldest) days") elif .oldest > 14 then badge("orange"; "\(.oldest) days") else badge("green"; "\(.oldest) days") end)</td></tr>"')
+
+          REVIEWER_ALERTS=$(gh pr list --repo $REPO --state open --json number,reviewRequests --limit 500 | jq -r '
+            [.[] | select(.reviewRequests | length > 0) | .reviewRequests[].login] |
+            group_by(.) | map({reviewer: .[0], count: length}) | sort_by(-.count) | .[:4] | .[] |
+            if .count >= 5 then "<div class=\"alert-card\"><span class=\"alert-icon\">⚠️</span><div class=\"alert-content\"><h4>@\(.reviewer) has \(.count) pending reviews</h4></div></div>"
+            else "<div class=\"alert-card info\"><span class=\"alert-icon\">📝</span><div class=\"alert-content\"><h4>@\(.reviewer) has \(.count) pending reviews</h4></div></div>" end')
+
+          STALE_ITEMS=$(gh pr list --repo $REPO --state open --json number,title,author,updatedAt,url --limit 500 | jq -r '
+            def days_since(date): ((now - (date | fromdateiso8601)) / 86400 | floor);
+            def badge_class(d): if d > 80 then "red" elif d > 30 then "orange" else "gray" end;
+            [.[] | select(days_since(.updatedAt) > 14) | {number, url, author: .author.login, title: .title[0:55], days: days_since(.updatedAt)}] |
+            sort_by(.days) | reverse | .[] |
+            "<div class=\"stale-item\"><a href=\"\(.url)\" target=\"_blank\" class=\"stale-pr\">#\(.number)</a><span class=\"stale-author\">\(.author)</span><span class=\"stale-title\">\(.title)</span><span class=\"stale-days\"><span class=\"badge badge-\(badge_class(.days))\">\(.days) days</span></span></div>"')
+
+          # Update latest.html with new data
+          sed -i "s/Generated on [0-9-]* at [0-9:]*[^<]*/Generated on $DATETIME/g" latest.html
+          sed -i "s/<div class=\"stat-value blue\">[0-9]*</<div class=\"stat-value blue\">$TOTAL_PRS</g" latest.html
+          sed -i "s/<div class=\"stat-value green\">[0-9]*</<div class=\"stat-value green\">$APPROVED_COUNT</g" latest.html
+          sed -i "s/<div class=\"stat-value purple\">[0-9]*</<div class=\"stat-value purple\">$AVG_AGE</g" latest.html
+          sed -i "s/<div class=\"stat-value orange\">[0-9]*</<div class=\"stat-value orange\">$STALE_COUNT</g" latest.html
+          sed -i "s/$DRAFT_COUNT drafts/$DRAFT_COUNT drafts/g" latest.html
+          sed -i "s/<span class=\"count\">[0-9]* total</<span class=\"count\">$STALE_COUNT total</g" latest.html
+
+          cp latest.html "$REPORT_NAME"
+          echo "Report generated: $REPORT_NAME"
+
+      - name: Commit and Push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "Refresh report $(date +'%Y-%m-%d %H:%M UTC')" || echo "No changes"
+          git push
