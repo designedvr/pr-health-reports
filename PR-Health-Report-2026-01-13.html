@@ -91,6 +91,8 @@
         @media (prefers-color-scheme: dark) { .stale-author { color: #FFFFFF !important; } .stale-title { color: #FFFFFF !important; } }
         .stale-days { text-align: right; }
         .footer { text-align: center; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border-color); color: var(--text-tertiary); font-size: 13px; }
+        .refresh-btn { margin-top: 16px; padding: 12px 24px; background: linear-gradient(135deg, #007AFF, #5856D6); color: white; border: none; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .refresh-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3); }
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .merge-cards, .alert-cards { grid-template-columns: 1fr; }
@@ -105,16 +107,17 @@
             <h1>PR Health Report</h1>
             <p class="subtitle">designedvr/designedvr</p>
             <p class="date">Generated on 2026-01-13</p>
+            <button class="refresh-btn" onclick="refreshReport()">🔄 Refresh Report</button>
         </header>
 
         <section class="section">
             <h2 class="section-title"><span class="icon icon-blue" style="color: white;">📊</span> Repository Overview</h2>
             <div class="stats-grid">
-                <div class="stat-card"><div class="stat-value blue">89</div><div class="stat-label">Total Open PRs</div><div class="stat-detail">21 drafts</div></div>
-                <div class="stat-card"><div class="stat-value green">7</div><div class="stat-label">Approved</div></div>
-                <div class="stat-card"><div class="stat-value purple">47</div><div class="stat-label">Avg. Age (Days)</div></div>
-                <div class="stat-card"><div class="stat-value orange">37</div><div class="stat-label">Stale PRs</div><div class="stat-detail">>14 days idle</div></div>
-                <div class="stat-card"><div class="stat-value">5</div><div class="stat-label">Ready to Merge</div></div>
+                <div class="stat-card"><div class="stat-value blue">81</div><div class="stat-label">Total Open PRs</div><div class="stat-detail">20 drafts</div></div>
+                <div class="stat-card"><div class="stat-value green">6</div><div class="stat-label">Approved</div></div>
+                <div class="stat-card"><div class="stat-value purple">36</div><div class="stat-label">Avg. Age (Days)</div></div>
+                <div class="stat-card"><div class="stat-value orange">29</div><div class="stat-label">Stale PRs</div><div class="stat-detail">>14 days idle</div></div>
+                <div class="stat-card"><div class="stat-value">2</div><div class="stat-label">Ready to Merge</div></div>
                 <div class="stat-card"><div class="stat-value red">13</div><div class="stat-label">Contributors</div></div>
             </div>
         </section>
@@ -122,11 +125,8 @@
         <section class="section">
             <h2 class="section-title"><span class="icon icon-green" style="color: white;">✓</span> Ready to Merge</h2>
             <div class="merge-cards">
-<div class="merge-card"><a href="https://github.com/designedvr/designedvr/pull/12461" target="_blank" class="pr-number">#12461</a><span class="merge-badge">Ready</span><h3>fix tech error task</h3><p class="author">by @yuvalic</p></div>
-<div class="merge-card"><a href="https://github.com/designedvr/designedvr/pull/12414" target="_blank" class="pr-number">#12414</a><span class="merge-badge">Ready</span><h3>Closes <a href="https://github.com/designedvr/designedvr/issues/11813" target="_blank">#11813</a> Operations: Task Catalog - Missing Configurati</h3><p class="author">by @serhii-boomnow</p></div>
+<div class="merge-card"><a href="https://github.com/designedvr/designedvr/pull/12414" target="_blank" class="pr-number">#12414</a><span class="merge-badge">Ready</span><h3>V2 Operations: Task Catalog - Missing Configuration Fields C</h3><p class="author">by @serhii-boomnow</p></div>
 <div class="merge-card"><a href="https://github.com/designedvr/designedvr/pull/12328" target="_blank" class="pr-number">#12328</a><span class="merge-badge">Ready</span><h3>Sync listing_taxes amounts on tax update</h3><p class="author">by @anton-boom</p></div>
-<div class="merge-card"><a href="https://github.com/designedvr/designedvr/pull/12319" target="_blank" class="pr-number">#12319</a><span class="merge-badge">Ready</span><h3>overlay</h3><p class="author">by @chaimsalzer</p></div>
-<div class="merge-card"><a href="https://github.com/designedvr/designedvr/pull/7089" target="_blank" class="pr-number">#7089</a><span class="merge-badge">Ready</span><h3>1844305 ai added services - facts into property_info payload</h3><p class="author">by @Devesy</p></div>
             </div>
         </section>
 
@@ -136,19 +136,19 @@
                 <table>
                     <thead><tr><th>Developer</th><th>Open PRs</th><th>Drafts</th><th>Old (>2wk)</th><th>Approved</th><th>Longest Idle</th></tr></thead>
                     <tbody>
-<tr><td><span class="developer-name">serhii-boomnow</span></td><td><span class="badge badge-blue">17</span></td><td><span class="badge badge-purple">4</span></td><td><span class="badge badge-orange">9</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">228 days</span></td></tr>
-<tr><td><span class="developer-name">petro-bn</span></td><td><span class="badge badge-blue">13</span></td><td><span class="badge badge-purple">13</span></td><td>0</td><td>0</td><td><span class="badge badge-green">13 days</span></td></tr>
-<tr><td><span class="developer-name">Devesy</span></td><td><span class="badge badge-blue">12</span></td><td>0</td><td><span class="badge badge-orange">10</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">243 days</span></td></tr>
+<tr><td><span class="developer-name">serhii-boomnow</span></td><td><span class="badge badge-blue">15</span></td><td><span class="badge badge-purple">4</span></td><td><span class="badge badge-orange">6</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">132 days</span></td></tr>
+<tr><td><span class="developer-name">petro-bn</span></td><td><span class="badge badge-blue">13</span></td><td><span class="badge badge-purple">12</span></td><td>0</td><td>0</td><td><span class="badge badge-green">13 days</span></td></tr>
 <tr><td><span class="developer-name">denis-polulyakh</span></td><td><span class="badge badge-blue">8</span></td><td><span class="badge badge-purple">1</span></td><td><span class="badge badge-orange">2</span></td><td>0</td><td><span class="badge badge-orange">26 days</span></td></tr>
 <tr><td><span class="developer-name">stasBoom</span></td><td><span class="badge badge-blue">8</span></td><td>0</td><td><span class="badge badge-orange">7</span></td><td><span class="badge badge-green">2</span></td><td><span class="badge badge-red">259 days</span></td></tr>
 <tr><td><span class="developer-name">yuvalic</span></td><td><span class="badge badge-blue">8</span></td><td>0</td><td><span class="badge badge-orange">4</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-orange">71 days</span></td></tr>
 <tr><td><span class="developer-name">mgoldboi</span></td><td><span class="badge badge-blue">7</span></td><td><span class="badge badge-purple">2</span></td><td><span class="badge badge-orange">5</span></td><td>0</td><td><span class="badge badge-red">94 days</span></td></tr>
+<tr><td><span class="developer-name">Devesy</span></td><td><span class="badge badge-blue">6</span></td><td>0</td><td><span class="badge badge-orange">4</span></td><td>0</td><td><span class="badge badge-red">172 days</span></td></tr>
 <tr><td><span class="developer-name">chaimsalzer</span></td><td><span class="badge badge-blue">6</span></td><td><span class="badge badge-purple">1</span></td><td><span class="badge badge-orange">2</span></td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-red">124 days</span></td></tr>
 <tr><td><span class="developer-name">anastasiia-uides</span></td><td><span class="badge badge-blue">3</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">0 days</span></td></tr>
-<tr><td><span class="developer-name">anton-boom</span></td><td><span class="badge badge-blue">3</span></td><td>0</td><td>0</td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-green">0 days</span></td></tr>
 <tr><td><span class="developer-name">alongoldboim</span></td><td><span class="badge badge-blue">2</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">1 days</span></td></tr>
+<tr><td><span class="developer-name">anton-boom</span></td><td><span class="badge badge-blue">2</span></td><td>0</td><td>0</td><td><span class="badge badge-green">1</span></td><td><span class="badge badge-green">0 days</span></td></tr>
+<tr><td><span class="developer-name">sagiboom</span></td><td><span class="badge badge-blue">2</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">0 days</span></td></tr>
 <tr><td><span class="developer-name">SeyranPH</span></td><td><span class="badge badge-blue">1</span></td><td>0</td><td><span class="badge badge-orange">1</span></td><td>0</td><td><span class="badge badge-orange">33 days</span></td></tr>
-<tr><td><span class="developer-name">sagiboom</span></td><td><span class="badge badge-blue">1</span></td><td>0</td><td>0</td><td>0</td><td><span class="badge badge-green">6 days</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -157,10 +157,10 @@
         <section class="section">
             <h2 class="section-title"><span class="icon icon-orange" style="color: white;">🔔</span> Reviewer Workload</h2>
             <div class="alert-cards">
-<div class="alert-card"><span class="alert-icon">⚠️</span><div class="alert-content"><h4>@alongoldboim has 6 pending reviews</h4></div></div>
 <div class="alert-card"><span class="alert-icon">⚠️</span><div class="alert-content"><h4>@yuvalic has 6 pending reviews</h4></div></div>
+<div class="alert-card"><span class="alert-icon">⚠️</span><div class="alert-content"><h4>@alongoldboim has 5 pending reviews</h4></div></div>
 <div class="alert-card info"><span class="alert-icon">📝</span><div class="alert-content"><h4>@chaimsalzer has 4 pending reviews</h4></div></div>
-<div class="alert-card info"><span class="alert-icon">📝</span><div class="alert-content"><h4>@stasBoom has 2 pending reviews</h4></div></div>
+<div class="alert-card info"><span class="alert-icon">📝</span><div class="alert-content"><h4>@stasBoom has 1 pending reviews</h4></div></div>
             </div>
         </section>
 
@@ -168,30 +168,23 @@
             <h2 class="section-title"><span class="icon icon-red" style="color: white;">⏰</span> Stale PRs <span style="font-size: 14px; color: var(--text-tertiary); font-weight: 400;">(>14 days idle)</span></h2>
             <div class="expandable-section">
                 <div class="expandable-header" onclick="toggleExpand(this)">
-                    <h3>View All Stale PRs <span class="count">37 total</span></h3>
+                    <h3>View All Stale PRs <span class="count">29 total</span></h3>
                     <div class="expand-icon"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
                 </div>
                 <div class="expandable-content">
                     <div class="stale-list">
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/6926" target="_blank" class="stale-pr">#6926</a><span class="stale-author">stasBoom</span><span class="stale-title">1787816 add currency to cm</span><span class="stale-days"><span class="badge badge-red">259 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/7089" target="_blank" class="stale-pr">#7089</a><span class="stale-author">Devesy</span><span class="stale-title">1844305 ai added services - facts into property_info pa</span><span class="stale-days"><span class="badge badge-red">243 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/7241" target="_blank" class="stale-pr">#7241</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">[Invoice] purchase item mark as paid in invoice handle </span><span class="stale-days"><span class="badge badge-red">228 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/7413" target="_blank" class="stale-pr">#7413</a><span class="stale-author">stasBoom</span><span class="stale-title">Refactor CalculateStatsJob</span><span class="stale-days"><span class="badge badge-red">217 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/8203" target="_blank" class="stale-pr">#8203</a><span class="stale-author">Devesy</span><span class="stale-title">7950 added possibility to update address items by updat</span><span class="stale-days"><span class="badge badge-red">185 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/8214" target="_blank" class="stale-pr">#8214</a><span class="stale-author">Devesy</span><span class="stale-title">8212 allow keep automation for manually changed listing</span><span class="stale-days"><span class="badge badge-red">171 days</span></span></div>
+<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/8214" target="_blank" class="stale-pr">#8214</a><span class="stale-author">Devesy</span><span class="stale-title">8212 allow keep automation for manually changed listing</span><span class="stale-days"><span class="badge badge-red">172 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9153" target="_blank" class="stale-pr">#9153</a><span class="stale-author">stasBoom</span><span class="stale-title">[Stripe] keep webhooks enabled</span><span class="stale-days"><span class="badge badge-red">146 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9404" target="_blank" class="stale-pr">#9404</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">Closes <a href="https://github.com/designedvr/designedvr/issues/7632" target="_blank">#7632</a> Hande duplicated channel list configuratio</span><span class="stale-days"><span class="badge badge-red">132 days</span></span></div>
+<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9560" target="_blank" class="stale-pr">#9560</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">Minut intgration base</span><span class="stale-days"><span class="badge badge-red">125 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/8908" target="_blank" class="stale-pr">#8908</a><span class="stale-author">chaimsalzer</span><span class="stale-title">working</span><span class="stale-days"><span class="badge badge-red">124 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9560" target="_blank" class="stale-pr">#9560</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">Minut intgration base</span><span class="stale-days"><span class="badge badge-red">124 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9650" target="_blank" class="stale-pr">#9650</a><span class="stale-author">Devesy</span><span class="stale-title">8913 allow edit approved message from ai and translate </span><span class="stale-days"><span class="badge badge-red">119 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9654" target="_blank" class="stale-pr">#9654</a><span class="stale-author">Devesy</span><span class="stale-title">9358 added filter by checkin in crm</span><span class="stale-days"><span class="badge badge-red">118 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9701" target="_blank" class="stale-pr">#9701</a><span class="stale-author">Devesy</span><span class="stale-title">9553 fixed hotel availability calculation</span><span class="stale-days"><span class="badge badge-red">116 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9732" target="_blank" class="stale-pr">#9732</a><span class="stale-author">Devesy</span><span class="stale-title">9500 fixed rate plan saving, display rate plan and canc</span><span class="stale-days"><span class="badge badge-red">111 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10038" target="_blank" class="stale-pr">#10038</a><span class="stale-author">mgoldboi</span><span class="stale-title">feat: Comprehensive Shifts Administration and Self-Serv</span><span class="stale-days"><span class="badge badge-red">94 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10098" target="_blank" class="stale-pr">#10098</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">Closes <a href="https://github.com/designedvr/designedvr/issues/9856" target="_blank">#9856</a> Add Linen Change Automation Feasibility</span><span class="stale-days"><span class="badge badge-red">90 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10077" target="_blank" class="stale-pr">#10077</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">PortalPaymentsDemo feature</span><span class="stale-days"><span class="badge badge-red">88 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10159" target="_blank" class="stale-pr">#10159</a><span class="stale-author">stasBoom</span><span class="stale-title">Refactor bank feed</span><span class="stale-days"><span class="badge badge-red">84 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10294" target="_blank" class="stale-pr">#10294</a><span class="stale-author">mgoldboi</span><span class="stale-title">Fix: Prevent infinite loop in listings-picker API calls</span><span class="stale-days"><span class="badge badge-orange">76 days</span></span></div>
+<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10294" target="_blank" class="stale-pr">#10294</a><span class="stale-author">mgoldboi</span><span class="stale-title">Fix: Prevent infinite loop in listings-picker API calls</span><span class="stale-days"><span class="badge badge-orange">77 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10343" target="_blank" class="stale-pr">#10343</a><span class="stale-author">yuvalic</span><span class="stale-title">fix crm db load</span><span class="stale-days"><span class="badge badge-orange">71 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10297" target="_blank" class="stale-pr">#10297</a><span class="stale-author">Devesy</span><span class="stale-title">8339 added vip guests config; rule for auto messages</span><span class="stale-days"><span class="badge badge-orange">62 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9257" target="_blank" class="stale-pr">#9257</a><span class="stale-author">stasBoom</span><span class="stale-title">[Pricing] Add listing markups</span><span class="stale-days"><span class="badge badge-orange">60 days</span></span></div>
@@ -199,7 +192,6 @@
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10556" target="_blank" class="stale-pr">#10556</a><span class="stale-author">stasBoom</span><span class="stale-title">Add tax snapshot on creation</span><span class="stale-days"><span class="badge badge-orange">50 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10489" target="_blank" class="stale-pr">#10489</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">Closes <a href="https://github.com/designedvr/designedvr/issues/9902" target="_blank">#9902</a> Fix listing page load issue</span><span class="stale-days"><span class="badge badge-orange">38 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10653" target="_blank" class="stale-pr">#10653</a><span class="stale-author">yuvalic</span><span class="stale-title">Upgrade node version</span><span class="stale-days"><span class="badge badge-orange">36 days</span></span></div>
-<div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/9574" target="_blank" class="stale-pr">#9574</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">Add multitasking tracker</span><span class="stale-days"><span class="badge badge-orange">35 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/11229" target="_blank" class="stale-pr">#11229</a><span class="stale-author">SeyranPH</span><span class="stale-title">feat: add rake file to seed/cleanup data for BAM tools </span><span class="stale-days"><span class="badge badge-orange">33 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/11249" target="_blank" class="stale-pr">#11249</a><span class="stale-author">Devesy</span><span class="stale-title">bam added more timezones for playbooks</span><span class="stale-days"><span class="badge badge-orange">33 days</span></span></div>
 <div class="stale-item"><a href="https://github.com/designedvr/designedvr/pull/10445" target="_blank" class="stale-pr">#10445</a><span class="stale-author">serhii-boomnow</span><span class="stale-title">Add fixed labor price config from catalog</span><span class="stale-days"><span class="badge badge-gray">29 days</span></span></div>
@@ -225,6 +217,13 @@
             const icon = header.querySelector('.expand-icon');
             content.classList.toggle('expanded');
             icon.classList.toggle('rotated');
+        }
+        function refreshReport() {
+            if (confirm('To refresh the report, run this command in Terminal:\\n\\nlaunchctl start com.sagiohayon.pr-health-report\\n\\nThen reload this page in ~30 seconds.')) {
+                navigator.clipboard.writeText('launchctl start com.sagiohayon.pr-health-report').then(() => {
+                    alert('Command copied to clipboard!');
+                });
+            }
         }
     </script>
 </body>
